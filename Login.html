@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            height: 100%;
+            overflow: hidden;
+            width: 100% !important;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+
+        .backLeft {
+            position: absolute;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: #e74c3c url(assets/img/login.jpg);
+            background-size: cover;
+            background-position: 50% 50%;
+        }
+
+        #back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: -999;
+        }
+
+        #slideBox {
+            width: 50%;
+            max-height: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin-left: 50%;
+            position: absolute;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        .topLayer {
+            width: 200%;
+            height: 100%;
+            position: relative;
+            left: 0;
+            left: -100%;
+        }
+
+        .left {
+            width: 50%;
+            height: 100%;
+            background: #2C3034;
+            left: 0;
+            position: absolute;
+        }
+
+        .right {
+            width: 50%;
+            height: 100%;
+            background: #f9f9f9;
+            right: 0;
+            position: absolute;
+        }
+
+        .content {
+            width: 250px;
+            margin: 0 auto;
+            top: 30%;
+            position: absolute;
+            left: 50%;
+            margin-left: -125px;
+        }
+
+        .content h2 {
+            color: #03A9F4;
+            font-weight: 300;
+            font-size: 35px;
+        }
+
+        button {
+            background: #03A9F4;
+            padding: 10px 16px;
+            width: auto;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            color: #fff;
+            line-height: 16px;
+            letter-spacing: 0.5px;
+            border-radius: 2px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+            border: 0;
+            outline: 0;
+            margin: 15px 15px 15px 0;
+            transition: all 0.25s;
+        }
+
+        button:hover {
+            background: #0288D1;
+            box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .off {
+            background: none;
+            color: #03A9F4;
+            box-shadow: none;
+        }
+
+        .right .off:hover {
+            background: #eee;
+            color: #03A9F4;
+            box-shadow: none;
+        }
+
+        .left .off:hover {
+            box-shadow: none;
+            color: #03A9F4;
+            background: #363A3D;
+        }
+
+        input {
+            background: transparent;
+            border: 0;
+            outline: 0;
+            border-bottom: 1px solid #45494C;
+            font-size: 14px;
+            color: #959595;
+            padding: 8px 0;
+            margin-top: 20px;
+        }
+
+        .social-login {
+            width: 300px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .social-icons {
+            margin-right: 20px;
+        }
+
+        .facebook {
+            background-color: #3B5998;
+            color: #fff;
+        }
+
+        .google {
+            background-color: #dd4b39;
+            color: #fff;
+        }
+
+        .github {
+            background-color: #55ACEE;
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="back">
+        <div class="backRight"></div>
+        <div class="backLeft"></div>
+    </div>
+
+    <div id="slideBox">
+        <div class="topLayer">
+
+            <div class="right">
+                <div class="content">
+                    <h2 style="text-align: center;">Login</h2>
+                    <form method="post">
+                        <div class="form-group">
+                            <div class="col-lg-5">
+                                <button class="btn btn-block social-login facebook ">
+                                    <span class="social-icons">
+                                        <i class="fa fa-facebook">
+                                        </i>
+                                    </span>
+                                    <span class="align-middle "><a href="index.html" style="text-decoration: none;color: white;">Login with Facebook</a></span>
+                                </button>
+                                <button class="btn btn-block social-login google">
+                                    <span class="social-icons">
+                                        <i class="fa fa-google">
+                                        </i>
+                                    </span>
+                                    <span class="align-middle" ><a href="index.html" style="text-decoration: none;color: white;">Login with Google</a></span>
+                                </button>
+                                <button class="btn btn-block social-login github">
+                                    <span class="social-icons">
+                                        <i class="fa fa-twitter">
+                                        </i>
+                                    </span>
+                                    <span class="align-middle"><a href="index.html" style="text-decoration: none;color: white;">Login with Twitter</a></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Inspiration from: http://ertekinn.com/loginsignup/-->
+</body>
+
+</html>

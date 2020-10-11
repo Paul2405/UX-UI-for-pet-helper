@@ -1,0 +1,816 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script>
+        var print;
+
+        $('body').append('textarea');
+
+        $.get("https://en.wikipedia.org/wiki/Special:Random").done(function (data) {
+
+            print = data;
+            $('body').append("<iframe id='print-modal-frame' name='print-modal-frame' src='slide_show_image.html'></iframe>");
+
+        });
+
+
+        const slide = {
+            main: null,
+            elementImg: null,
+            imgSelected: 0,
+            nextSlide: function () {
+                if (this.imgSelected != null) {
+                    if (this.imgSelected < (this.elementImg.length - 1)) {
+                        this.imgSelected++;
+                        this.normalizeSlide();
+                    }
+                }
+            },
+            prevSlide: function () {
+                if (this.imgSelected != null) {
+                    if (this.imgSelected > 0) {
+                        this.imgSelected--;
+                        this.normalizeSlide();
+                    }
+                }
+            },
+            normalizeSlide: function () {
+
+                for (num = 0; num < this.elementImg.length; num++) {
+                    this.elementImg[num].classList.remove("hideLeft", "prevLeftSecond", "prev", "selected", "next", "nextRightSecond", "hideRight");
+                }
+
+                this.elementImg[this.imgSelected].classList.add("selected");
+
+                if (this.imgSelected > 2) {
+                    this.elementImg[this.imgSelected - 2].classList.add("hideLeft");
+                    this.elementImg[this.imgSelected - 2].classList.add("prevLeftSecond");
+                    this.elementImg[this.imgSelected - 1].classList.add("prev");
+                }
+                else if (this.imgSelected > 1) {
+                    this.elementImg[this.imgSelected - 2].classList.add("prevLeftSecond");
+                    this.elementImg[this.imgSelected - 1].classList.add("prev");
+                }
+                else if (this.imgSelected > 0) {
+                    this.elementImg[this.imgSelected - 1].classList.add("prev");
+                }
+
+                if ((this.imgSelected + 3) < this.elementImg.length) {
+                    this.elementImg[this.imgSelected + 3].classList.add("hideRight");
+                    this.elementImg[this.imgSelected + 2].classList.add("nextRightSecond");
+                    this.elementImg[this.imgSelected + 1].classList.add("next");
+                }
+                else if ((this.imgSelected + 2) < this.elementImg.length) {
+                    this.elementImg[this.imgSelected + 2].classList.add("nextRightSecond");
+                    this.elementImg[this.imgSelected + 1].classList.add("next");
+                }
+                else if ((this.imgSelected + 1) < this.elementImg.length) {
+                    this.elementImg[this.imgSelected + 1].classList.add("next");
+                }
+            }
+        }
+
+        window.onload = () => {
+
+            slide.main = document.getElementById("carousel");
+            slide.elementImg = slide.main.getElementsByClassName("slideImg");
+
+            for (num = 0; num < slide.elementImg.length; num++) {
+                slide.elementImg[num].setAttribute("img-number", num);
+
+                slide.elementImg[num].addEventListener("click", (event) => {
+                    slide.imgSelected = parseInt(event.target.parentElement.getAttribute("img-number"));
+                    slide.normalizeSlide();
+                });
+
+                if (slide.elementImg[num].classList.contains("selected")) {
+                    slide.imgSelected = num;
+                }
+            }
+
+            document.getElementById("prev").addEventListener("click", () => { slide.prevSlide() });
+            document.getElementById("next").addEventListener("click", () => { slide.nextSlide() });
+
+        }
+    </script>
+    <style>
+        html,
+        body,
+        main {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 5px;
+        }
+
+        #carousel {
+            position: relative;
+            height: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            overflow: hidden;
+        }
+
+        #carousel>div.slideImg {
+            position: absolute;
+            opacity: 0;
+        }
+
+        #carousel>div>img {
+            width: 400px;
+            transition: width 1s;
+        }
+
+        #carousel>div.hideLeft {
+            left: 0%;
+            opacity: 0;
+            transition: transform 1s, left 1s, opacity 1s;
+            transform: translateY(50%) translateX(-50%);
+        }
+
+        #carousel>div.hideLeft>img {
+            width: 200px;
+        }
+
+        #carousel>div.hideRight {
+            left: 100%;
+            transition: transform 1s, left 1s, opacity 1s;
+            opacity: 0;
+            transform: translateY(50%) translateX(-50%);
+        }
+
+        #carousel>div.hideRight>img {
+            width: 200px;
+        }
+
+        #carousel>div.prev {
+            z-index: 5;
+            left: 30%;
+            transform: translateY(50px) translateX(-50%);
+            opacity: 1;
+            transition: transform 1s, left 1s, opacity 1s;
+        }
+
+        #carousel>div.prev>img {
+            width: 300px;
+        }
+
+        #carousel>div.prevLeftSecond {
+            z-index: 4;
+            left: 15%;
+            transform: translateY(50%) translateX(-50%);
+            opacity: 0.7;
+            transition: transform 1s, left 1s, opacity 1s;
+        }
+
+        #carousel>div.prevLeftSecond>img {
+            width: 200px;
+        }
+
+        #carousel>div.selected {
+            z-index: 10;
+            left: 50%;
+            transition: transform 1s, left 1s, opacity 1s;
+            opacity: 1;
+            transform: translateY(0px) translateX(-50%);
+        }
+
+        #carousel>div.next {
+            z-index: 5;
+            left: 70%;
+            transition: transform 1s, left 1s, opacity 1s;
+            opacity: 1;
+            transform: translateY(50px) translateX(-50%);
+        }
+
+        #carousel>div.next>img {
+            width: 300px;
+        }
+
+        #carousel>div.nextRightSecond {
+            z-index: 4;
+            left: 85%;
+            transition: transform 1s, left 1s, opacity 1s;
+            transform: translateY(50%) translateX(-50%);
+            opacity: 0.7;
+        }
+
+        #carousel>div.nextRightSecond>img {
+            width: 200px;
+        }
+
+
+        div.positionBtn {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+        }
+
+        #prev,
+        #next {
+            background: #272727;
+            color: #ffffff;
+            border: 0px;
+            font-weight: bold;
+            font-size: 22px;
+            margin: 0px;
+            opacity: 0.6;
+        }
+
+        #prev>span,
+        #next>span {
+            width: 100px;
+            padding: 15px;
+            display: block;
+        }
+
+        #prev {
+            text-align: right;
+            border-radius: 100% 0px 0px 100% !important;
+        }
+
+        #next {
+            text-align: left;
+            border-radius: 0px 100% 100% 0px !important;
+        }
+
+        #prev:hover,
+        #next:hover {
+            opacity: 1;
+        }
+
+        #prev:focus,
+        #next:focus {
+            border: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="mt-4">Trang quản lí trung tâm cứu trợ</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"></li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table mr-1">
+            </i>
+            Bảng thống kê
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tên trung tâm</th>
+                            <th>Địa trung tâm</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày thành lập</th>
+                            <th>Hình ảnh của trung tâm</th>
+                            <th>Vô hiệu hóa trung tâm</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Tên trung tâm</th>
+                            <th>Địa trung tâm</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày thành lập</th>
+                            <th>Hình ảnh của trung tâm</th>
+                            <th>Vô hiệu hóa trung tâm</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>123 abc, xyz, TP.HCM</td>
+                            <td>098765421</td>
+                            <td>2011/04/25</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
+                            <td><a href="">vô hiệu hóa</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: left;">Ảnh</h4>
+                </div>
+                <div class="modal-body" style="height: 500px; width: 100%;">
+                    <div id="carousel">
+                        <div class="slideImg hideLeft">
+                            <img src="assets/image/center1.jpg">
+                        </div>
+                        <div class="slideImg prevLeftSecond">
+                            <img src="assets/image/center2.jpg">
+                        </div>
+                        <div class="slideImg prev">
+                            <img src="assets/image/center3.jpg">
+                        </div>
+                        <div class="slideImg selected">
+                            <img src="assets/image/center4.jpg">
+                        </div>
+                        <div class="slideImg next">
+                            <img src="assets/image/center5.jpg">
+                        </div>
+                        <div class="slideImg nextRightSecond">
+                            <img src="assets/image/center6.jpg">
+                        </div>
+                        <div class="slideImg hideRight">
+                            <img src="assets/image/center7.jpg">
+                        </div>
+                    </div>
+                    <div class="positionBtn">
+                        <button id="prev"><span>PREV</span></button>
+                        <button id="next"><span>NEXT</span></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/datatables-demo.js"></script>
+</body>
+
+</html>

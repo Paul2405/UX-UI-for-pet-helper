@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            font-family: 'Lato';
+        }
+
+        #profile-grid {
+            overflow: auto;
+            white-space: normal;
+        }
+
+        #profile-grid .profile {
+            padding-bottom: 40px;
+        }
+
+        #profile-grid .panel {
+            padding: 0
+        }
+
+        #profile-grid .panel-body {
+            padding: 15px
+        }
+
+        #profile-grid .profile-name {
+            font-weight: bold;
+        }
+
+        #profile-grid .thumbnail {
+            margin-bottom: 6px;
+        }
+
+        #profile-grid .panel-thumbnail {
+            overflow: hidden;
+        }
+
+        #profile-grid .img-rounded {
+            border-radius: 4px 4px 0 0;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            /* show lightbox when clicking a thumbnail */
+            $('a.thumb').click(function (event) {
+                event.preventDefault();
+                var content = $('.modal-body');
+                content.empty();
+                var title = $(this).attr("title");
+                $('.modal-title').html(title);
+                content.html($(this).html());
+                $(".modal-profile").modal({ show: true });
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <section id="profiles" class="page">
+
+        <div class="container">
+
+            <div class="content text-center">
+                <div class="heading">
+                    <h2>Tìm chủ mới cho thú cưng</h2>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row" id="profile-grid">
+
+                    <div class="col-sm-4 col-xs-12 profile">
+                        <div class="panel panel-default">
+                            <div class="panel-thumbnail">
+                                <a href="#" title="image 1" class="thumb">
+                                    <img src="assets/image/Dogs.jpg" class="img-responsive img-rounded"
+                                        data-toggle="modal" data-target=".modal-profile-lg"
+                                        style="height: 300px; width: 100%;">
+                                </a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group panel-body">
+                                    <a href="#" class="list-group-item disabled">
+                                        <h4 class="profile-name">Pillo</h4>
+                                    </a>
+                                    <a href="#" class="list-group-item">Cân nặng (kg) : 4, dài (cm): 90 </a>
+                                    <a href="#" class="list-group-item">Tình trạng: bình thường</a>
+                                    <a href="#" class="list-group-item">Sở thích: thích được dắt đi dạo</a>
+                                    <a href="#" class="list-group-item">Địa chỉ: Trung tâm cứu trợ ABC<br>(178 Lê Văn
+                                        Việt, Quận 9, TP.HCM)</a>
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn-danger" style="margin-left: 40%;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12 profile">
+                        <div class="panel panel-default">
+                            <div class="panel-thumbnail">
+                                <a href="#" title="image 2" class="thumb">
+                                    <img src="assets/image/image2.jpg" class="img-responsive img-rounded"
+                                        data-toggle="modal" data-target=".modal-profile-lg"
+                                        style="height: 300px; width: 100%;">
+                                </a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group panel-body">
+                                    <a href="#" class="list-group-item disabled">
+                                        <h4 class="profile-name">Pillo</h4>
+                                    </a>
+                                    <a href="#" class="list-group-item">Cân nặng (kg) : 4, dài (cm): 90 </a>
+                                    <a href="#" class="list-group-item">Tình trạng: bình thường</a>
+                                    <a href="#" class="list-group-item">Sở thích: thích được dắt đi dạo</a>
+                                    <a href="#" class="list-group-item">Địa chỉ: Trung tâm cứu trợ ABC<br>(178 Lê Văn
+                                        Việt, Quận 9, TP.HCM)</a>
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn-danger" style="margin-left: 40%;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12 profile">
+                        <div class="panel panel-default">
+                            <div class="panel-thumbnail">
+                                <a href="#" title="image 3" class="thumb">
+                                    <img src="assets/image/image3.jpg" class="img-responsive img-rounded"
+                                        data-toggle="modal" data-target=".modal-profile-lg"
+                                        style="height: 300px; width: 100%;">
+                                </a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group panel-body">
+                                    <a href="#" class="list-group-item disabled">
+                                        <h4 class="profile-name">Pillo</h4>
+                                    </a>
+                                    <a href="#" class="list-group-item">Cân nặng (kg) : 4, dài (cm): 90 </a>
+                                    <a href="#" class="list-group-item">Tình trạng: bình thường</a>
+                                    <a href="#" class="list-group-item">Sở thích: thích được dắt đi dạo</a>
+                                    <a href="#" class="list-group-item">Địa chỉ: Trung tâm cứu trợ ABC<br>(178 Lê Văn
+                                        Việt, Quận 9, TP.HCM)</a>
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn-danger" style="margin-left: 40%;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12 profile">
+                        <div class="panel panel-default">
+                            <div class="panel-thumbnail">
+                                <a href="#" title="image 4" class="thumb">
+                                    <img src="assets/image/image4.jpg" class="img-responsive img-rounded"
+                                        data-toggle="modal" data-target=".modal-profile-lg"
+                                        style="height: 300px; width: 100%;">
+                                </a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group panel-body">
+                                    <a href="#" class="list-group-item disabled">
+                                        <h4 class="profile-name">Pillo</h4>
+                                    </a>
+                                    <a href="#" class="list-group-item">Cân nặng (kg) : 4, dài (cm): 90 </a>
+                                    <a href="#" class="list-group-item">Tình trạng: bình thường</a>
+                                    <a href="#" class="list-group-item">Sở thích: thích được dắt đi dạo</a>
+                                    <a href="#" class="list-group-item">Địa chỉ: Trung tâm cứu trợ ABC<br>(178 Lê Văn
+                                        Việt, Quận 9, TP.HCM)</a>
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn-danger" style="margin-left: 40%;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-4 col-xs-12 profile">
+                        <div class="panel panel-default">
+                            <div class="panel-thumbnail">
+                                <a href="#" title="image 5" class="thumb">
+                                    <img src="assets/image/image5.jpg" class="img-responsive img-rounded"
+                                        data-toggle="modal" data-target=".modal-profile-lg"
+                                        style="height: 300px; width: 100%;">
+                                </a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group panel-body">
+                                    <a href="#" class="list-group-item disabled">
+                                        <h4 class="profile-name">Pillo</h4>
+                                    </a>
+                                    <a href="#" class="list-group-item">Cân nặng (kg) : 4, dài (cm): 90 </a>
+                                    <a href="#" class="list-group-item">Tình trạng: bình thường</a>
+                                    <a href="#" class="list-group-item">Sở thích: thích được dắt đi dạo</a>
+                                    <a href="#" class="list-group-item">Địa chỉ: Trung tâm cứu trợ ABC<br>(178 Lê Văn
+                                        Việt, Quận 9, TP.HCM)</a>
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn-danger" style="margin-left: 40%;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-4 col-xs-12 profile">
+                        <div class="panel panel-default">
+                            <div class="panel-thumbnail">
+                                <a href="#" title="image 6" class="thumb">
+                                    <img src="assets/image/image 6.jpg" class="img-responsive img-rounded"
+                                        data-toggle="modal" data-target=".modal-profile-lg"
+                                        style="height: 300px; width: 100%;">
+                                </a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group panel-body">
+                                    <a href="#" class="list-group-item disabled">
+                                        <h4 class="profile-name">Pillo</h4>
+                                    </a>
+                                    <a href="#" class="list-group-item">Cân nặng (kg) : 4, dài (cm): 90 </a>
+                                    <a href="#" class="list-group-item">Tình trạng: bình thường</a>
+                                    <a href="#" class="list-group-item">Sở thích: thích được dắt đi dạo</a>
+                                    <a href="#" class="list-group-item">Địa chỉ: Trung tâm cứu trợ ABC<br>(178 Lê Văn
+                                        Việt, Quận 9, TP.HCM)</a>
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn-danger" style="margin-left: 40%;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- .modal-profile -->
+    <div class="modal fade modal-profile" tabindex="-1" role="dialog" aria-labelledby="modalProfile" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal">×</button>
+                    <h3 class="modal-title"></h3>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- //.modal-profile -->
+</body>
+
+</html>

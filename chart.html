@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
+    <!-- vue-highcharts should be load after Highcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-highcharts@0.1/dist/vue-highcharts.min.js"></script>
+    <style>
+        .highcharts-title{
+            font-weight: bold !important;
+            font-style: initial;
+        }
+        .highcharts-credits{
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <highcharts :options="options" ref="highcharts"></highcharts>
+    </div>
+    <script>
+    var options = {
+        title: {
+          text: 'SƠ ĐỒ TÌNH HÌNH PHẦN MỀM',
+          x: -20 ,
+        },
+        xAxis: {
+          categories: ['tháng 1', 'tháng 2', 'tháng 3', 'tháng 4', 'tháng 5', 'tháng 6',
+            'tháng 7', 'tháng 8', 'tháng 9', 'tháng 10', 'tháng 11', 'tháng 12'
+          ]
+        },
+        yAxis: {
+          title: {
+            text: 'phần trăm (%)'
+          },
+          plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+          }],
+          min: 0,
+          max: 100,
+          tickInterval:10,
+        },
+        tooltip: {
+          valueSuffix: '%'
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+        },
+        series: [{
+          name: 'Chó Tân',
+          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 30.3, 42.3, 56.9, 69.6]
+        }, {
+          name: 'Chó Luân',
+          data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 30.1, 32.1, 40.1, 45.6, 72.5]
+        }, {
+          name: 'Chó Dũng',
+          data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 26.9, 32.3, 40.0, 45.9, 52.0]
+        }, {
+          name: 'Ba thằng chó',
+          data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 32.6, 42.2, 52.3, 6.6, 4.8]
+        }]
+      };
+      
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          options: options
+        },
+        methods: {
+            updateCredits: function() {
+              var chart = this.$refs.highcharts.chart;
+            chart.credits.update({
+              style: {
+                color: '#' + (Math.random() * 0xffffff | 0).toString(16)
+              }
+            });
+          }
+        }
+      });
+      </script>
+</body>
+
+</html>
