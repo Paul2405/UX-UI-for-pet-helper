@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         body {
             height: 100%;
@@ -14,6 +12,17 @@
             font-family: 'Roboto', sans-serif;
         }
 
+
+
+        .backRight {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: #3498db url(assets/img/login.jpg);
+            background-size: cover;
+            background-position: 50% 50%;
+        }
 
         .backLeft {
             position: absolute;
@@ -132,34 +141,21 @@
             padding: 8px 0;
             margin-top: 20px;
         }
-
-        .social-login {
-            width: 300px;
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .social-icons {
-            margin-right: 20px;
-        }
-
-        .facebook {
-            background-color: #3B5998;
-            color: #fff;
-        }
-
-        .google {
-            background-color: #dd4b39;
-            color: #fff;
-        }
-
-        .github {
-            background-color: #55ACEE;
-            color: #fff;
-        }
     </style>
-
+    <script>
+        $(document).ready(function () {
+            $('#login').on('click', function () {
+                var username = $('#username').val();
+                var password = $('#password').val();
+               if(username == 'haudq' && password == '123'){
+                  window.location.href='index.html';
+               }else{
+                    alert("Username or password is not correct");
+               }
+            });
+        });
+        
+    </script>
 </head>
 
 <body>
@@ -170,41 +166,26 @@
 
     <div id="slideBox">
         <div class="topLayer">
-
+        
             <div class="right">
                 <div class="content">
-                    <h2 style="text-align: center;">Login</h2>
-                    <form method="post">
+                    <h2>Login</h2>
+                    <form method="post" onsubmit="return false;">
                         <div class="form-group">
-                            <div class="col-lg-5">
-                                <button class="btn btn-block social-login facebook ">
-                                    <span class="social-icons">
-                                        <i class="fa fa-facebook">
-                                        </i>
-                                    </span>
-                                    <span class="align-middle "><a href="index.html" style="text-decoration: none;color: white;">Login with Facebook</a></span>
-                                </button>
-                                <button class="btn btn-block social-login google">
-                                    <span class="social-icons">
-                                        <i class="fa fa-google">
-                                        </i>
-                                    </span>
-                                    <span class="align-middle" ><a href="index.html" style="text-decoration: none;color: white;">Login with Google</a></span>
-                                </button>
-                                <button class="btn btn-block social-login github">
-                                    <span class="social-icons">
-                                        <i class="fa fa-twitter">
-                                        </i>
-                                    </span>
-                                    <span class="align-middle"><a href="index.html" style="text-decoration: none;color: white;">Login with Twitter</a></span>
-                                </button>
-                            </div>
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" id="username"/>
                         </div>
+                        <div class="form-group">
+                            <label for="Password" class="form-label">Password</label>
+                            <input type="password" id="password" />
+                        </div>
+                        <button id="login" type="submit">Login</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <div id="test"></div>
 
     <!--Inspiration from: http://ertekinn.com/loginsignup/-->
 </body>
