@@ -479,6 +479,16 @@
             document.getElementById("next").addEventListener("click", () => { slide.nextSlide() });
 
         }
+
+        $(document).ready(function () {
+            var buttons = document.getElementsByClassName('btnDelete');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", function () { 
+                    var x = document.getElementById($(this).val());
+                    x.style.display="none"; 
+                })
+            }
+        });
     </script>
 </head>
 
@@ -531,7 +541,7 @@
                 <h1>Bài đăng tìm cứu trợ cho thú cưng</h1>
             </div>
 
-            <div class="product">
+            <div class="product" id="1">
                 <div class="img" style="padding: 20px;">
                     <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
                     <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
@@ -545,14 +555,14 @@
                 </div>
                 <div class="price-add">
                     <div class="add-to-cart">
-                        <button style="background-color: red;" type="submit">Delete</button>
+                        <button style="background-color: red;" type="submit" class="btnDelete" value="1">Delete</button>
                     </div>
                 </div>
             </div>
             <div class="hr">
                 <hr>
             </div>
-            <div class="product">
+            <div class="product" id="2">
                 <div class="product">
                     <div class="img" style="padding: 20px;">
                         <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
@@ -567,14 +577,14 @@
                     </div>
                     <div class="price-add">
                         <div class="add-to-cart">
-                            <button style="background-color: red;" type="submit">Delete</button>
+                            <button style="background-color: red;" type="submit" class="btnDelete" value="2">Delete</button>
                         </div>
                     </div>
                 </div>
                 <div class="hr">
                     <hr>
                 </div>
-                <div class="product">
+                <div class="product" id="3">
                     <div class="product">
                         <div class="img" style="padding: 20px;">
                             <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
@@ -589,14 +599,14 @@
                         </div>
                         <div class="price-add">
                             <div class="add-to-cart">
-                                <button style="background-color: red;" type="submit">Delete</button>
+                                <button style="background-color: red;" type="submit" class="btnDelete" value="3">Delete</button>
                             </div>
                         </div>
                     </div>
                     <div class="hr">
                         <hr>
                     </div>
-                    <div class="product">
+                    <div class="product" id="4">
                         <div class="product">
                             <div class="img" style="padding: 20px;">
                                 <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
@@ -611,14 +621,14 @@
                             </div>
                             <div class="price-add">
                                 <div class="add-to-cart">
-                                    <button style="background-color: red;" type="submit">Delete</button>
+                                    <button style="background-color: red;" type="submit" class="btnDelete" value="4">Delete</button>
                                 </div>
                             </div>
                         </div>
                         <div class="hr">
                             <hr>
                         </div>
-                        <div class="product">
+                        <div class="product" id="5">
                             <div class="product">
                                 <div class="img" style="padding: 20px;">
                                     <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
@@ -633,14 +643,14 @@
                                 </div>
                                 <div class="price-add">
                                     <div class="add-to-cart">
-                                        <button style="background-color: red;" type="submit">Delete</button>
+                                        <button style="background-color: red;" type="submit" class="btnDelete" value="5">Delete</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="hr">
                                 <hr>
                             </div>
-                            <div class="product">
+                            <div class="product" id="6">
 
                                 <div class="product">
                                     <div class="img" style="padding: 20px;">
@@ -656,14 +666,14 @@
                                     </div>
                                     <div class="price-add">
                                         <div class="add-to-cart">
-                                            <button style="background-color: red;" type="submit">Delete</button>
+                                            <button style="background-color: red;" type="submit" class="btnDelete" value="6">Delete</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="hr">
                                     <hr>
                                 </div>
-                                <div class="product">
+                                <div class="product" id="7">
                                     <div class="product">
                                         <div class="img" style="padding: 20px;">
                                             <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
@@ -678,14 +688,14 @@
                                         </div>
                                         <div class="price-add">
                                             <div class="add-to-cart">
-                                                <button style="background-color: red;" type="submit">Delete</button>
+                                                <button style="background-color: red;" type="submit" class="btnDelete" value="7">Delete</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="hr">
                                         <hr>
                                     </div>
-                                    <div class="product">
+                                    <div class="product" id="8">
                                         <div class="product">
                                             <div class="img" style="padding: 20px;">
                                                 <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
@@ -700,14 +710,14 @@
                                             </div>
                                             <div class="price-add">
                                                 <div class="add-to-cart">
-                                                    <button style="background-color: red;" type="submit">Delete</button>
+                                                    <button style="background-color: red;" type="submit" class="btnDelete" value="8">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="hr">
                                             <hr>
                                         </div>
-                                        <div class="product">
+                                        <div class="product" id="9">
                                             <div class="product">
                                                 <div class="img" style="padding: 20px;">
                                                     <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
@@ -722,14 +732,14 @@
                                                 </div>
                                                 <div class="price-add">
                                                     <div class="add-to-cart">
-                                                        <button style="background-color: red;" type="submit">Delete</button>
+                                                        <button style="background-color: red;" type="submit" class="btnDelete" value="9">Delete</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="hr">
                                                 <hr>
                                             </div>
-                                            <div class="product">
+                                            <div class="product" id="10">
                                                 <div class="product">
                                                     <div class="img" style="padding: 20px;">
                                                         <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
@@ -744,7 +754,7 @@
                                                     </div>
                                                     <div class="price-add">
                                                         <div class="add-to-cart">
-                                                            <button style="background-color: red;" type="submit">Delete</button>
+                                                            <button style="background-color: red;" type="submit" class="btnDelete" value="10">Delete</button>
                                                         </div>
                                                     </div>
                                                 </div>

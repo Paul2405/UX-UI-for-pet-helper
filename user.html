@@ -1,522 +1,712 @@
-
 <html>
-    <head>
 
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <h1 class="mt-4">Trang quản lí người dùng</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active"></li>
-                </ol>
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table mr-1">
-                </i>
-                Bảng thống kê
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+
+
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact input[type="tel"],
+        #contact input[type="url"],
+        #contact textarea,
+        #contact button[type="submit"] {
+            font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;
+        }
+
+        #contact {
+            background: #F9F9F9;
+            padding: 25px;
+            margin: 50px 0;
+        }
+
+        #contact h3 {
+            color: #F96;
+            display: block;
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        #contact h4 {
+            margin: 5px 0 15px;
+            display: block;
+            font-size: 13px;
+        }
+
+        fieldset {
+            border: medium none !important;
+            margin: 0 0 10px;
+            min-width: 100%;
+            padding: 0;
+            width: 100%;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact input[type="tel"],
+        #contact input[type="url"],
+        #contact textarea {
+            width: 100%;
+            border: 1px solid #CCC;
+            background: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+        }
+
+        #contact input[type="text"]:hover,
+        #contact input[type="email"]:hover,
+        #contact input[type="tel"]:hover,
+        #contact input[type="url"]:hover,
+        #contact textarea:hover {
+            -webkit-transition: border-color 0.3s ease-in-out;
+            -moz-transition: border-color 0.3s ease-in-out;
+            transition: border-color 0.3s ease-in-out;
+            border: 1px solid #AAA;
+        }
+
+        #contact textarea {
+            height: 100px;
+            max-width: 100%;
+            resize: none;
+        }
+
+        #contact button[type="submit"] {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            background: #0CF;
+            color: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        #contact button[type="submit"]:hover {
+            background: #09C;
+            -webkit-transition: background 0.3s ease-in-out;
+            -moz-transition: background 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #contact button[type="submit"]:active {
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        #contact input:focus,
+        #contact textarea:focus {
+            outline: 0;
+            border: 1px solid #999;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #888;
+        }
+
+        :-moz-placeholder {
+            color: #888;
+        }
+
+        ::-moz-placeholder {
+            color: #888;
+        }
+
+        :-ms-input-placeholder {
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="mt-4">Trang quản lí người dùng</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"></li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table mr-1">
+            </i>
+            Bảng thống kê
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Ngày tháng năm sinh</th>
+                            <th>Số cmnd</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Vô hiệu hóa tài khoản</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Ngày tháng năm sinh</th>
+                            <th>Số cmnd</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Vô hiệu hóa tài khoản</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>Đinh Quốc Hậu</td>
+                            <td>21</td>
+                            <td>111111111</td>
+                            <td>Lê Văn Việt,Quận 9, TP.HCM</td>
+                            <td>012345678</td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">Vô hiệu hóa</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Tên</th>
-                                <th>Ngày tháng năm sinh</th>
-                                <th>Số cmnd</th>
-                                <th>Địa chỉ</th>
-                                <th>Số điện thoại</th>
-                                <th>Vô hiệu hóa tài khoản</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Tên</th>
-                                <th>Ngày tháng năm sinh</th>
-                                <th>Số cmnd</th>
-                                <th>Địa chỉ</th>
-                                <th>Số điện thoại</th>
-                                <th>Vô hiệu hóa tài khoản</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hậu</td>
-                                <td>21</td>
-                                <td>111111111</td>
-                                <td>Lê Văn Việt,Quận 9, TP.HCM</td>
-                                <td>012345678</td>
-                                <td><a href="">Vô hiệu hóa</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div> 
         </div>
     </div>
+    </div>
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Lí do vô hiệu hóa</h4>
+                </div>
+                <div class="modal-body" style="height: 500px;">
+                    <div id="carousel">
+                        <form id="contact" action="" method="post">
+                            <fieldset>
+                                <input placeholder="Tiêu đề..." type="text" tabindex="4" id="title" required>
+                            </fieldset>
+                            <fieldset>
+                                <textarea placeholder="Lí do..." tabindex="5" required id="message"></textarea>
+                            </fieldset>
+                            <fieldset>
+                                <button name="submit" type="submit" id="contact-submit"
+                                    data-submit="...Sending">Submit</button>
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#contact-submit').on('click', function () {
+                var title = $('#title').val();
+                var message = $('#message').val();
+                if (title != '' && message != '') {
+                    alert("Gửi thông báo thành công");
+                }
+            });
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/datatables-demo.js"></script>
-    </body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/datatables-demo.js"></script>
+</body>
+
 </html>

@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
@@ -18,9 +17,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script>
         var print;
-
-        $('body').append('textarea');
-
         $.get("https://en.wikipedia.org/wiki/Special:Random").done(function (data) {
 
             print = data;
@@ -259,6 +255,128 @@
         #next:focus {
             border: 0px;
         }
+
+        /* report */
+
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+
+
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact input[type="tel"],
+        #contact input[type="url"],
+        #contact textarea,
+        #contact button[type="submit"] {
+            font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;
+        }
+
+        #contact {
+            background: #F9F9F9;
+            padding: 25px;
+            margin: 50px 0;
+        }
+
+        #contact h3 {
+            color: #F96;
+            display: block;
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        #contact h4 {
+            margin: 5px 0 15px;
+            display: block;
+            font-size: 13px;
+        }
+
+        fieldset {
+            border: medium none !important;
+            margin: 0 0 10px;
+            min-width: 100%;
+            padding: 0;
+            width: 100%;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact input[type="tel"],
+        #contact input[type="url"],
+        #contact textarea {
+            width: 100%;
+            border: 1px solid #CCC;
+            background: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+        }
+
+        #contact input[type="text"]:hover,
+        #contact input[type="email"]:hover,
+        #contact input[type="tel"]:hover,
+        #contact input[type="url"]:hover,
+        #contact textarea:hover {
+            -webkit-transition: border-color 0.3s ease-in-out;
+            -moz-transition: border-color 0.3s ease-in-out;
+            transition: border-color 0.3s ease-in-out;
+            border: 1px solid #AAA;
+        }
+
+        #contact textarea {
+            height: 100px;
+            max-width: 100%;
+            resize: none;
+        }
+
+        #contact button[type="submit"] {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            background: #0CF;
+            color: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        #contact button[type="submit"]:hover {
+            background: #09C;
+            -webkit-transition: background 0.3s ease-in-out;
+            -moz-transition: background 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #contact button[type="submit"]:active {
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        #contact input:focus,
+        #contact textarea:focus {
+            outline: 0;
+            border: 1px solid #999;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #888;
+        }
+
+        :-moz-placeholder {
+            color: #888;
+        }
+
+        ::-moz-placeholder {
+            color: #888;
+        }
+
+        :-ms-input-placeholder {
+            color: #888;
+        }
     </style>
 </head>
 
@@ -302,456 +420,513 @@
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i> </a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                         <tr>
                             <td>ABC</td>
                             <td>123 abc, xyz, TP.HCM</td>
                             <td>098765421</td>
                             <td>2011/04/25</td>
-                            <td><a href="" data-toggle="modal" data-target="#myModal">xem</a></td>
-                            <td><a href="">vô hiệu hóa</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td><a href="" data-toggle="modal" data-target="#myModal1">vô hiệu hóa</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -760,11 +935,52 @@
     </div>
     </div>
 
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Lí do vô hiệu hóa</h4>
+                </div>
+                <div class="modal-body" style="height: 500px;">
+                    <div id="carousel">
+                        <form id="contact" action="" method="post">
+                            <fieldset>
+                                <input placeholder="Tiêu đề..." type="text" tabindex="4" id="title" required>
+                            </fieldset>
+                            <fieldset>
+                                <textarea placeholder="Lí do..." tabindex="5" required id="message"></textarea>
+                            </fieldset>
+                            <fieldset>
+                                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending"
+                                   >Submit</button>
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#contact-submit').on('click', function () {
+                var title = $('#title').val();
+                var message = $('#message').val();
+                if (title != '' && message != '') {
+                    alert("Gửi thông báo thành công");
+                }
+            });
+        });
+
+    </script>
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    
+
                     <h4 class="modal-title" id="myModalLabel" style="text-align: left;">Ảnh</h4>
                 </div>
                 <div class="modal-body" style="height: 500px; width: 100%;">

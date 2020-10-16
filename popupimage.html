@@ -250,54 +250,166 @@
         #next:focus {
             border: 0px;
         }
+
+        /* jaja */
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+
+        
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact input[type="tel"],
+        #contact input[type="url"],
+        #contact textarea,
+        #contact button[type="submit"] {
+            font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;
+        }
+
+        #contact {
+            background: #F9F9F9;
+            padding: 25px;
+            margin: 50px 0;
+        }
+
+        #contact h3 {
+            color: #F96;
+            display: block;
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        #contact h4 {
+            margin: 5px 0 15px;
+            display: block;
+            font-size: 13px;
+        }
+
+        fieldset {
+            border: medium none !important;
+            margin: 0 0 10px;
+            min-width: 100%;
+            padding: 0;
+            width: 100%;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact input[type="tel"],
+        #contact input[type="url"],
+        #contact textarea {
+            width: 100%;
+            border: 1px solid #CCC;
+            background: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+        }
+
+        #contact input[type="text"]:hover,
+        #contact input[type="email"]:hover,
+        #contact input[type="tel"]:hover,
+        #contact input[type="url"]:hover,
+        #contact textarea:hover {
+            -webkit-transition: border-color 0.3s ease-in-out;
+            -moz-transition: border-color 0.3s ease-in-out;
+            transition: border-color 0.3s ease-in-out;
+            border: 1px solid #AAA;
+        }
+
+        #contact textarea {
+            height: 100px;
+            max-width: 100%;
+            resize: none;
+        }
+
+        #contact button[type="submit"] {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            background: #0CF;
+            color: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        #contact button[type="submit"]:hover {
+            background: #09C;
+            -webkit-transition: background 0.3s ease-in-out;
+            -moz-transition: background 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #contact button[type="submit"]:active {
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        #contact input:focus,
+        #contact textarea:focus {
+            outline: 0;
+            border: 1px solid #999;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #888;
+        }
+
+        :-moz-placeholder {
+            color: #888;
+        }
+
+        ::-moz-placeholder {
+            color: #888;
+        }
+
+        :-ms-input-placeholder {
+            color: #888;
+        }
     </style>
 </head>
 
 <body>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
         Launch demo modal
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ảnh</h4>
+                    <h4 class="modal-title" id="myModalLabel">Lí do vô hiệu hóa</h4>
                 </div>
                 <div class="modal-body" style="height: 500px;">
                     <div id="carousel">
-                        <div class="slideImg hideLeft">
-                            <img src="https://i1.sndcdn.com/artworks-000165384395-rhrjdn-t500x500.jpg">
-                        </div>
-                        <div class="slideImg prevLeftSecond">
-                            <img src="https://i1.sndcdn.com/artworks-000185743981-tuesoj-t500x500.jpg">
-                        </div>
-                        <div class="slideImg prev">
-                            <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
-                        </div>
-                        <div class="slideImg selected">
-                            <img src="https://i1.sndcdn.com/artworks-000062423439-lf7ll2-t500x500.jpg">
-                        </div>
-                        <div class="slideImg next">
-                            <img src="https://i1.sndcdn.com/artworks-000028787381-1vad7y-t500x500.jpg">
-                        </div>
-                        <div class="slideImg nextRightSecond">
-                            <img src="https://i1.sndcdn.com/artworks-000108468163-dp0b6y-t500x500.jpg">
-                        </div>
-                        <div class="slideImg hideRight">
-                            <img src="https://i1.sndcdn.com/artworks-000064920701-xrez5z-t500x500.jpg">
-                        </div>
+                            <form id="contact" action="" method="post">
+                               
+                                <fieldset>
+                                    <input placeholder="Tiêu đề..." type="url" tabindex="4"
+                                        required>
+                                </fieldset>
+                                <fieldset>
+                                    <textarea placeholder="Lí do..." tabindex="5" required></textarea>
+                                </fieldset>
+                                <fieldset>
+                                    <button name="submit" type="submit" id="contact-submit"
+                                        data-submit="...Sending">Submit</button>
+                                </fieldset>
+                            </form>
+
                     </div>
-                    <div class="positionBtn">
-                        <button id="prev"><span>PREV</span></button>
-                        <button id="next"><span>NEXT</span></button>
-                    </div>
+
                 </div>
-               
+
             </div>
         </div>
     </div>
