@@ -1,781 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/tim_cuu_tro.css">
+    <link rel="stylesheet" href="css/popupReport.css">
+    <script src="js/popup.js"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <style>
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-        * {
-            font-family: "Open Sans";
-        }
-
-
-        h4 {
-            margin: 0;
-        }
-
-        a {
-            color: #0074D9;
-        }
-
-        a:hover {
-            color: #4100cd
-        }
-
-        input {
-            font-size: 16px;
-            text-align: right;
-        }
-
-        button {
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        span {
-            color: #6F4242;
-        }
-
-        hr {
-            width: 800px;
-            border: 1px solid #DDD;
-        }
-
-        .add-to-cart button,
-        .product-total button {
-            font-size: 14px;
-        }
-
-        .add-to-cart button:hover {
-            background-color: #ffc900;
-        }
-
-        .product-total button:hover {
-            background-color: #ef473a;
-            color: #fff;
-        }
-
-        .checkout .button {
-            padding-top: 30px;
-        }
-
-        .checkout .button button {
-            background-color: #7F00FF;
-            color: white;
-            font-size: 16px;
-            padding: 8px;
-        }
-
-        .checkout .button button:hover {
-            background-color: #4100cd;
-        }
-
-        .container {
-            position: absolute;
-            width: 900px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .category {
-            padding: 10px 70px 30px;
-        }
-
-        .product-listing,
-        .shopping-cart {
-            background-color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .shopping-cart {
-            margin-top: 30px;
-            margin-bottom: 75px;
-            padding-top: 30px;
-        }
-
-        .product>*,
-        .product-in-cart>* {
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        .product-listing .img {
-            width: 150px;
-            padding: 20px 10px 15px 60px;
-        }
-
-        .product-listing input {
-            width: 15px;
-        }
-
-        .product-listing h2 {
-            padding-top: 40px;
-            margin-bottom: 0;
-        }
-
-        .shopping-cart .img {
-            width: 150px;
-            padding: 0px 10px 15px 60px;
-        }
-
-        .product-specification,
-        .product-description {
-            width: 440px;
-        }
-
-        .product-specification {
-            padding: 10px 0;
-        }
-
-        .price-add {
-            width: 150px;
-            padding-top: 18px;
-            text-align: right;
-        }
-
-        .price-add>* {
-            padding: 0 5px;
-        }
-
-        .price-add button {
-            padding-left: 5px;
-        }
-
-        .navigation {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .navigation>* {
-            display: inline-block;
-            padding: 0 5px;
-        }
-
-        .navigation a {
-            text-decoration: none;
-        }
-
-        .previous {
-            padding-right: 25px;
-        }
-
-        .next {
-            padding-left: 25px;
-        }
-
-        .page1 {
-            background-color: #DDD;
-        }
-
-        .page1 a {
-            color: black;
-        }
-
-        .title {
-            padding-left: 70px;
-        }
-
-        .product3 {
-            padding-bottom: 40px;
-        }
-
-        .product1,
-        .product2,
-        .product3 {
-            padding-top: 15px;
-        }
-
-        .product1>*,
-        .product2>*,
-        .product3>* {
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        .subtotal,
-        .promo,
-        .checkout .button {
-            text-align: right;
-        }
-
-        .checkout {
-            clear: both;
-            background-color: #EEE;
-            padding: 0 55px 60px 0;
-            border-bottom-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-        }
-
-        .checkout>* {
-            padding: 5px;
-        }
-
-        .promo {
-            padding-top: 60px;
-        }
-
-        .product-total {
-            width: 150px;
-            text-align: right;
-        }
-
-        .product-total>* {
-            display: block;
-        }
-
-        .checkout>* {
-            display: block;
-            vertical-align: top;
-        }
-
-        /* popup */
-        html,
-        body,
-        main {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 5px;
-        }
-
-        #carousel {
-            position: relative;
-            height: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            overflow: hidden;
-        }
-
-        #carousel>div.slideImg {
-            position: absolute;
-            opacity: 0;
-        }
-
-        #carousel>div>img {
-            width: 400px;
-            transition: width 1s;
-        }
-
-        #carousel>div.hideLeft {
-            left: 0%;
-            opacity: 0;
-            transition: transform 1s, left 1s, opacity 1s;
-            transform: translateY(50%) translateX(-50%);
-        }
-
-        #carousel>div.hideLeft>img {
-            width: 200px;
-        }
-
-        #carousel>div.hideRight {
-            left: 100%;
-            transition: transform 1s, left 1s, opacity 1s;
-            opacity: 0;
-            transform: translateY(50%) translateX(-50%);
-        }
-
-        #carousel>div.hideRight>img {
-            width: 200px;
-        }
-
-        #carousel>div.prev {
-            z-index: 5;
-            left: 30%;
-            transform: translateY(50px) translateX(-50%);
-            opacity: 1;
-            transition: transform 1s, left 1s, opacity 1s;
-        }
-
-        #carousel>div.prev>img {
-            width: 300px;
-        }
-
-        #carousel>div.prevLeftSecond {
-            z-index: 4;
-            left: 15%;
-            transform: translateY(50%) translateX(-50%);
-            opacity: 0.7;
-            transition: transform 1s, left 1s, opacity 1s;
-        }
-
-        #carousel>div.prevLeftSecond>img {
-            width: 200px;
-        }
-
-        #carousel>div.selected {
-            z-index: 10;
-            left: 50%;
-            transition: transform 1s, left 1s, opacity 1s;
-            opacity: 1;
-            transform: translateY(0px) translateX(-50%);
-        }
-
-        #carousel>div.next {
-            z-index: 5;
-            left: 70%;
-            transition: transform 1s, left 1s, opacity 1s;
-            opacity: 1;
-            transform: translateY(50px) translateX(-50%);
-        }
-
-        #carousel>div.next>img {
-            width: 300px;
-        }
-
-        #carousel>div.nextRightSecond {
-            z-index: 4;
-            left: 85%;
-            transition: transform 1s, left 1s, opacity 1s;
-            transform: translateY(50%) translateX(-50%);
-            opacity: 0.7;
-        }
-
-        #carousel>div.nextRightSecond>img {
-            width: 200px;
-        }
-
-
-        div.positionBtn {
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 10px;
-        }
-
-        #prev,
-        #next {
-            background: #272727;
-            color: #ffffff;
-            border: 0px;
-            font-weight: bold;
-            font-size: 22px;
-            margin: 0px;
-            opacity: 0.6;
-        }
-
-        #prev>span,
-        #next>span {
-            width: 100px;
-            padding: 15px;
-            display: block;
-        }
-
-        #prev {
-            text-align: right;
-            border-radius: 100% 0px 0px 100% !important;
-        }
-
-        #next {
-            text-align: left;
-            border-radius: 0px 100% 100% 0px !important;
-        }
-
-        #prev:hover,
-        #next:hover {
-            opacity: 1;
-        }
-
-        #prev:focus,
-        #next:focus {
-            border: 0px;
-        }
-    </style>
-    <script>
-        var print;
-
-        $('body').append('textarea');
-
-        $.get("https://en.wikipedia.org/wiki/Special:Random").done(function (data) {
-
-            print = data;
-            $('body').append("<iframe id='print-modal-frame' name='print-modal-frame' src='slide_show_image.html'></iframe>");
-
-        });
-
-
-        const slide = {
-            main: null,
-            elementImg: null,
-            imgSelected: 0,
-            nextSlide: function () {
-                if (this.imgSelected != null) {
-                    if (this.imgSelected < (this.elementImg.length - 1)) {
-                        this.imgSelected++;
-                        this.normalizeSlide();
-                    }
-                }
-            },
-            prevSlide: function () {
-                if (this.imgSelected != null) {
-                    if (this.imgSelected > 0) {
-                        this.imgSelected--;
-                        this.normalizeSlide();
-                    }
-                }
-            },
-            normalizeSlide: function () {
-
-                for (num = 0; num < this.elementImg.length; num++) {
-                    this.elementImg[num].classList.remove("hideLeft", "prevLeftSecond", "prev", "selected", "next", "nextRightSecond", "hideRight");
-                }
-
-                this.elementImg[this.imgSelected].classList.add("selected");
-
-                if (this.imgSelected > 2) {
-                    this.elementImg[this.imgSelected - 2].classList.add("hideLeft");
-                    this.elementImg[this.imgSelected - 2].classList.add("prevLeftSecond");
-                    this.elementImg[this.imgSelected - 1].classList.add("prev");
-                }
-                else if (this.imgSelected > 1) {
-                    this.elementImg[this.imgSelected - 2].classList.add("prevLeftSecond");
-                    this.elementImg[this.imgSelected - 1].classList.add("prev");
-                }
-                else if (this.imgSelected > 0) {
-                    this.elementImg[this.imgSelected - 1].classList.add("prev");
-                }
-
-                if ((this.imgSelected + 3) < this.elementImg.length) {
-                    this.elementImg[this.imgSelected + 3].classList.add("hideRight");
-                    this.elementImg[this.imgSelected + 2].classList.add("nextRightSecond");
-                    this.elementImg[this.imgSelected + 1].classList.add("next");
-                }
-                else if ((this.imgSelected + 2) < this.elementImg.length) {
-                    this.elementImg[this.imgSelected + 2].classList.add("nextRightSecond");
-                    this.elementImg[this.imgSelected + 1].classList.add("next");
-                }
-                else if ((this.imgSelected + 1) < this.elementImg.length) {
-                    this.elementImg[this.imgSelected + 1].classList.add("next");
-                }
-            }
-        }
-
-        window.onload = () => {
-
-            slide.main = document.getElementById("carousel");
-            slide.elementImg = slide.main.getElementsByClassName("slideImg");
-
-            for (num = 0; num < slide.elementImg.length; num++) {
-                slide.elementImg[num].setAttribute("img-number", num);
-
-                slide.elementImg[num].addEventListener("click", (event) => {
-                    slide.imgSelected = parseInt(event.target.parentElement.getAttribute("img-number"));
-                    slide.normalizeSlide();
-                });
-
-                if (slide.elementImg[num].classList.contains("selected")) {
-                    slide.imgSelected = num;
-                }
-            }
-
-            document.getElementById("prev").addEventListener("click", () => { slide.prevSlide() });
-            document.getElementById("next").addEventListener("click", () => { slide.nextSlide() });
-
-        }
-
-        $(document).ready(function () {
-            var buttons = document.getElementsByClassName('btnDelete');
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].addEventListener("click", function () { 
-                    var x = document.getElementById($(this).val());
-                    x.style.display="none"; 
-                })
-            }
-        });
-    </script>
 </head>
+<body>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,300' rel='stylesheet' type='text/css'>
+<div class="site-size">
 
-<body >
+<div class="container-fluid">
+  
+	<div class="box center-block">
+
+		<h1 class="text-center quote">Một con mèo bị thương ở miệng</h1>
+		<h3 class="text-center quote"><i>Người đăng: Dũng Xạo</h2></i><br><br>
+
+		<div class="photo-frame">
+            <figure><img src="assets/image/rescue_cat3.jpg" alt="Millie the Dog" class="img-responsive center-block" id="Millie-pic">
+            <a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i>xem thêm</a>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-lg-2">
+			</div>
+			<div class="col-lg-8">
+				<ul class="main">
+					<li><b>Thời gian:</b> thú 6, 16/10/2020 14:02:45</li>
+					<li><b>Vị trí:</b>120 Võ Văn Ngân, Q9, TP.HCM</li>
+					<li><b>Đăc điểm nhận dạng:</b></li>
+					<li><b>-Loại:</b>mèo</li>
+					<li><b>-Màu sắc:</b>Cam</li>
+                    <li><b>Tình trạng hiện tại:</b></ul>
+                    <li><b>-Tổng quát:</b>mèo</li>
+                    <li><b>-Bị thương:</b>Cam</li>
+                    <li><b>-vị trí vết thương:</b>mèo</li>
+					<li><b>-Phân trăm vết thương:</b>Cam</li>
+				<br><br>
+				<div class="row">
+                    <button type="submit" id="btnDelete" value="1" class="btn-danger"
+                        style="margin-left: 40%;">Delete</button>
+                </div>
+			</div>
+        </div>
+    </div>
+    <div class="box center-block">
+
+		<h1 class="text-center quote">Một con mèo bị thương ở miệng</h1>
+		<h3 class="text-center quote"><i>Người đăng: Dũng Xạo</h2></i><br><br>
+
+		<div class="photo-frame">
+            <figure><img src="assets/image/image2.jpg" alt="Millie the Dog" class="img-responsive center-block" id="Millie-pic">
+            <a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i>xem thêm</a>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-lg-2">
+			</div>
+			<div class="col-lg-8">
+				<ul class="main">
+					<li><b>Thời gian:</b> thú 6, 16/10/2020 14:02:45</li>
+					<li><b>Vị trí:</b>120 Võ Văn Ngân, Q9, TP.HCM</li>
+					<li><b>Đăc điểm nhận dạng:</b></li>
+					<li><b>-Loại:</b>mèo</li>
+					<li><b>-Màu sắc:</b>Cam</li>
+                    <li><b>Tình trạng hiện tại:</b></ul>
+                    <li><b>-Tổng quát:</b>mèo</li>
+                    <li><b>-Bị thương:</b>Cam</li>
+                    <li><b>-vị trí vết thương:</b>mèo</li>
+					<li><b>-Phân trăm vết thương:</b>Cam</li>
+				<br><br>
+				<div class="row">
+                    <button type="submit" id="btnDelete" value="1" class="btn-danger"
+                        style="margin-left: 40%;">Delete</button>
+                </div>
+			</div>
+        </div>
+    </div>
+    <div class="box center-block">
+
+		<h1 class="text-center quote">Một con chó bị thương ở miệng</h1>
+		<h3 class="text-center quote"><i>Người đăng: Dũng Xạo</h2></i><br><br>
+
+		<div class="photo-frame">
+            <figure><img src="assets/image/phe7.jpg" alt="Millie the Dog" class="img-responsive center-block" id="Millie-pic">
+            <a href="" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i>xem thêm</a>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-lg-2">
+			</div>
+			<div class="col-lg-8">
+				<ul class="main">
+					<li><b>Thời gian:</b> thú 6, 16/10/2020 14:02:45</li>
+					<li><b>Vị trí:</b>120 Võ Văn Ngân, Q9, TP.HCM</li>
+					<li><b>Đăc điểm nhận dạng:</b></li>
+					<li><b>-Loại:</b>mèo</li>
+					<li><b>-Màu sắc:</b>Cam</li>
+                    <li><b>Tình trạng hiện tại:</b></ul>
+                    <li><b>-Tổng quát:</b>mèo</li>
+                    <li><b>-Bị thương:</b>Cam</li>
+                    <li><b>-vị trí vết thương:</b>mèo</li>
+					<li><b>-Phân trăm vết thương:</b>Cam</li>
+				<br><br>
+				<div class="row">
+                    <button type="submit" id="btnDelete" value="1" class="btn-danger"
+                        style="margin-left: 40%;">Delete</button>
+                </div>
+			</div>
+        </div>
+	</div>  
     <!-- popup -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="width: 700px;">
                 <div class="modal-header">
 
                     <h4 class="modal-title" id="myModalLabel" style="text-align: left;">Ảnh</h4>
                 </div>
                 <div class="modal-body" style="height: 500px; width: 100%;">
-                    <div id="carousel">
-                        <div class="slideImg hideLeft">
-                            <img src="assets/image/phe1.jpg">
-                        </div>
-                        <div class="slideImg prevLeftSecond">
-                            <img src="assets/image/phe2.jpg">
-                        </div>
-                        <div class="slideImg prev">
-                            <img src="assets/image/phe3.jpg">
-                        </div>
-                        <div class="slideImg selected">
-                            <img src="assets/image/phe4.jpg">
-                        </div>
-                        <div class="slideImg next">
-                            <img src="assets/image/phe5.jpg">
-                        </div>
-                        <div class="slideImg nextRightSecond">
-                            <img src="assets/image/phe6.jpg">
-                        </div>
-                        <div class="slideImg hideRight">
-                            <img src="assets/image/phe7.jpg">
-                        </div>
-                    </div>
-                    <div class="positionBtn">
-                        <button id="prev"><span>PREV</span></button>
-                        <button id="next"><span>NEXT</span></button>
-                    </div>
+                    <ul class="slides">
+                        <input type="radio" name="radio-btn" id="img-1" checked />
+                        <li class="slide-container">
+                            <div class="slide">
+                                <img src="assets/image/rescue_cat3.jpg" />
+                            </div>
+                            <div class="nav">
+                                <label for="img-6" class="prev">&#x2039;</label>
+                                <label for="img-2" class="next">&#x203a;</label>
+                            </div>
+                        </li>
+                    
+                        <input type="radio" name="radio-btn" id="img-2" />
+                        <li class="slide-container">
+                            <div class="slide">
+                              <img src="assets/image/cat2.jpg" />
+                            </div>
+                            <div class="nav">
+                                <label for="img-1" class="prev">&#x2039;</label>
+                                <label for="img-3" class="next">&#x203a;</label>
+                            </div>
+                        </li>
+                    
+                        <input type="radio" name="radio-btn" id="img-3" />
+                        <li class="slide-container">
+                            <div class="slide">
+                              <img src="assets/image/cat3.jpg" />
+                            </div>
+                            <div class="nav">
+                                <label for="img-2" class="prev">&#x2039;</label>
+                                <label for="img-4" class="next">&#x203a;</label>
+                            </div>
+                        </li>
+                    
+                        <input type="radio" name="radio-btn" id="img-4" />
+                        <li class="slide-container">
+                            <div class="slide">
+                              <img src="assets/image/cat4.jpg" />
+                            </div>
+                            <div class="nav">
+                                <label for="img-3" class="prev">&#x2039;</label>
+                                <label for="img-5" class="next">&#x203a;</label>
+                            </div>
+                        </li>
+                        
+                        <li class="nav-dots">
+                          <label for="img-1" class="nav-dot" id="img-dot-1"></label>
+                          <label for="img-2" class="nav-dot" id="img-dot-2"></label>
+                          <label for="img-3" class="nav-dot" id="img-dot-3"></label>
+                          <label for="img-4" class="nav-dot" id="img-dot-4"></label>
+                          <label for="img-5" class="nav-dot" id="img-dot-5"></label>
+                          <label for="img-6" class="nav-dot" id="img-dot-6"></label>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
         </div>
     </div>
-
-    <div class="container">
-        <div class="product-listing">
-            <div class="title" style="text-align: center; padding: 20px;">
-                <h1>Bài đăng tìm cứu trợ cho thú cưng</h1>
-            </div>
-
-            <div class="product" id="1">
-                <div class="img" style="padding: 20px;">
-                    <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                    <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                </div>
-                <div class="product-specification" style="padding-left: 20px;">
-                    <h3>Pillo</h3>
-                    -Cân nặng(kg): 4<br>
-                    -Kích thước(cm): dài 80<br>
-                    -Tình trạng: Phê thuốc<br>
-                    -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                </div>
-                <div class="price-add">
-                    <div class="add-to-cart">
-                        <button style="background-color: red;" type="submit" class="btnDelete" value="1">Delete</button>
-                    </div>
-                </div>
-            </div>
-            <div class="hr">
-                <hr>
-            </div>
-            <div class="product" id="2">
-                <div class="product">
-                    <div class="img" style="padding: 20px;">
-                        <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                        <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                    </div>
-                    <div class="product-specification" style="padding-left: 20px;">
-                        <h3>Pillo</h3>
-                        -Cân nặng(kg): 4<br>
-                        -Kích thước(cm): dài 80<br>
-                        -Tình trạng: Phê thuốc<br>
-                        -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                    </div>
-                    <div class="price-add">
-                        <div class="add-to-cart">
-                            <button style="background-color: red;" type="submit" class="btnDelete" value="2">Delete</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="hr">
-                    <hr>
-                </div>
-                <div class="product" id="3">
-                    <div class="product">
-                        <div class="img" style="padding: 20px;">
-                            <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                            <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                        </div>
-                        <div class="product-specification" style="padding-left: 20px;">
-                            <h3>Pillo</h3>
-                            -Cân nặng(kg): 4<br>
-                            -Kích thước(cm): dài 80<br>
-                            -Tình trạng: Phê thuốc<br>
-                            -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                        </div>
-                        <div class="price-add">
-                            <div class="add-to-cart">
-                                <button style="background-color: red;" type="submit" class="btnDelete" value="3">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hr">
-                        <hr>
-                    </div>
-                    <div class="product" id="4">
-                        <div class="product">
-                            <div class="img" style="padding: 20px;">
-                                <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                                <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                            </div>
-                            <div class="product-specification" style="padding-left: 20px;">
-                                <h3>Pillo</h3>
-                                -Cân nặng(kg): 4<br>
-                                -Kích thước(cm): dài 80<br>
-                                -Tình trạng: Phê thuốc<br>
-                                -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                            </div>
-                            <div class="price-add">
-                                <div class="add-to-cart">
-                                    <button style="background-color: red;" type="submit" class="btnDelete" value="4">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hr">
-                            <hr>
-                        </div>
-                        <div class="product" id="5">
-                            <div class="product">
-                                <div class="img" style="padding: 20px;">
-                                    <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                                    <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                                </div>
-                                <div class="product-specification" style="padding-left: 20px;">
-                                    <h3>Pillo</h3>
-                                    -Cân nặng(kg): 4<br>
-                                    -Kích thước(cm): dài 80<br>
-                                    -Tình trạng: Phê thuốc<br>
-                                    -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                                </div>
-                                <div class="price-add">
-                                    <div class="add-to-cart">
-                                        <button style="background-color: red;" type="submit" class="btnDelete" value="5">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="hr">
-                                <hr>
-                            </div>
-                            <div class="product" id="6">
-
-                                <div class="product">
-                                    <div class="img" style="padding: 20px;">
-                                        <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                                        <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                                    </div>
-                                    <div class="product-specification" style="padding-left: 20px;">
-                                        <h3>Pillo</h3>
-                                        -Cân nặng(kg): 4<br>
-                                        -Kích thước(cm): dài 80<br>
-                                        -Tình trạng: Phê thuốc<br>
-                                        -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                                    </div>
-                                    <div class="price-add">
-                                        <div class="add-to-cart">
-                                            <button style="background-color: red;" type="submit" class="btnDelete" value="6">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hr">
-                                    <hr>
-                                </div>
-                                <div class="product" id="7">
-                                    <div class="product">
-                                        <div class="img" style="padding: 20px;">
-                                            <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                                            <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                                        </div>
-                                        <div class="product-specification" style="padding-left: 20px;">
-                                            <h3>Pillo</h3>
-                                            -Cân nặng(kg): 4<br>
-                                            -Kích thước(cm): dài 80<br>
-                                            -Tình trạng: Phê thuốc<br>
-                                            -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                                        </div>
-                                        <div class="price-add">
-                                            <div class="add-to-cart">
-                                                <button style="background-color: red;" type="submit" class="btnDelete" value="7">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="hr">
-                                        <hr>
-                                    </div>
-                                    <div class="product" id="8">
-                                        <div class="product">
-                                            <div class="img" style="padding: 20px;">
-                                                <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                                                <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                                            </div>
-                                            <div class="product-specification" style="padding-left: 20px;">
-                                                <h3>Pillo</h3>
-                                                -Cân nặng(kg): 4<br>
-                                                -Kích thước(cm): dài 80<br>
-                                                -Tình trạng: Phê thuốc<br>
-                                                -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                                            </div>
-                                            <div class="price-add">
-                                                <div class="add-to-cart">
-                                                    <button style="background-color: red;" type="submit" class="btnDelete" value="8">Delete</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="hr">
-                                            <hr>
-                                        </div>
-                                        <div class="product" id="9">
-                                            <div class="product">
-                                                <div class="img" style="padding: 20px;">
-                                                    <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                                                    <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                                                </div>
-                                                <div class="product-specification" style="padding-left: 20px;">
-                                                    <h3>Pillo</h3>
-                                                    -Cân nặng(kg): 4<br>
-                                                    -Kích thước(cm): dài 80<br>
-                                                    -Tình trạng: Phê thuốc<br>
-                                                    -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                                                </div>
-                                                <div class="price-add">
-                                                    <div class="add-to-cart">
-                                                        <button style="background-color: red;" type="submit" class="btnDelete" value="9">Delete</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr">
-                                                <hr>
-                                            </div>
-                                            <div class="product" id="10">
-                                                <div class="product">
-                                                    <div class="img" style="padding: 20px;">
-                                                        <img src="assets/image/pheco.jpg" alt="" style="height: 100px; width: 140px;">
-                                                        <a href="" data-toggle="modal" data-target="#myModal">xem thêm</a>
-                                                    </div>
-                                                    <div class="product-specification" style="padding-left: 20px;">
-                                                        <h3>Pillo</h3>
-                                                        -Cân nặng(kg): 4<br>
-                                                        -Kích thước(cm): dài 80<br>
-                                                        -Tình trạng: Phê thuốc<br>
-                                                        -Địa chỉ: 178 Lê Văn Việt, Quận 9, TP.HCM
-                                                    </div>
-                                                    <div class="price-add">
-                                                        <div class="add-to-cart">
-                                                            <button style="background-color: red;" type="submit" class="btnDelete" value="10">Delete</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="navigation">
-                                                    <div class="previous">
-                                                        <a href="">
-                                                            < Previous Page</a>
-                                                    </div>
-                                                    <div class="page1">
-                                                        <a href="">1</a>
-                                                    </div>
-                                                    <div class="page2">
-                                                        <a href="">2</a>
-                                                    </div>
-                                                    <div class="next">
-                                                        <a href="Next Page">Next Page ></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
+</div>
+  </div> <!--site-size-->
 </body>
-
 </html>
